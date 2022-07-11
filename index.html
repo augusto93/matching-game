@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Drag Drop</title>
+  </head>
+  <body>
+    
+    <main class="container">
+      <section>
+        
+        <div id="content-title">
+          
+          <h1>SulAmérica Matching Game</h1>
+        
+        </div>
+
+        <div id="content-list">
+          
+          <div class="draggable-list">
+            <div id="e1" draggable="true">What's your name?</div>
+            <div id="e2" draggable="true">Nice to meet you.</div>
+            <div id="e3" draggable="true">I'm sorry</div>
+            <div id="e4" draggable="true">What do you do in free time?</div>
+            <div id="e5" draggable="true">Is something wrong?</div>
+          </div>
+
+          <div class="draggable-list">
+            <div id="s2" draggable="true">Mucho gusto</div>
+            <div id="s5" draggable="true">¿Passa algo?</div>
+            <div id="s1" draggable="true">¿Cómo te lhamas?</div>
+            <div id="s3" draggable="true">Lo siento</div>
+            <div id="s4" draggable="true">¿Qué haces en tu tiempo libre?</div>
+          </div>
+
+          <div id="endMessage">
+            <h3>Well done!</h3>
+            <table>
+              <tr>
+                <th>English</th>
+                <th>Spanish</th>
+              </tr>
+              <tr>
+                <td>What's your name?</td>
+                <td>¿Cómo te lhamas?</td>
+              </tr>
+              <tr>
+                <td>Nice to meet you</td>
+                <td>Mucho gusto</td>
+              </tr>
+              <tr>
+                <td>I'm sorry</td>
+                <td>Lo siento</td>
+              </tr>
+              <tr>
+                <td>What do you do in your free time?</td>
+                <td>¿Qué haces en tu tiempo libre?</td>
+              </tr>
+              <tr>
+                <td>Is something wrong?</td>
+                <td>¿Passa algo?</td>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+      </section>
+
+      <button id="play" onclick="playAgain()">Play again</button>
+      
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
