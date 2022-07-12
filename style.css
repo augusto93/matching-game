@@ -27,13 +27,19 @@ main {
   margin:0 auto;
 }
 
-#content-list {
+.content-list {
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #ff8c03;
   width: 800px;
   height: 250px;
   border-radius: 120px;
+  text-align: center;
+}
+
+.column {
+  flex-direction: column;
 }
 
 .draggable-list {
@@ -52,6 +58,16 @@ main {
   color: #ffffff;
   cursor: grab;
   text-align: center;
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+}
+
+#results {
+  flex-direction: row;
+}
+
+#results div:hover {
+  background-color: #146efa;
 }
 
 .over {
@@ -71,7 +87,8 @@ button {
 }
 
 button:hover {
-  background-color: #516a75;
+  color: #001e64;
+  background-color: #ffffff;
 }
 
 #endMessage {
