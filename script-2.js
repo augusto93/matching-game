@@ -1,6 +1,6 @@
 const draggableListItems = document.querySelectorAll('.draggable-list div');
 const endMessage = document.getElementById('endMessage');
-const restart = document.getElementById('play');
+const clear = document.getElementById('results');
 
 // current phrase being dragged
 let selectedId;
@@ -35,12 +35,15 @@ function dragDrop() {
   if (checkForMatch(selectedId, dropTargetId)) {
     document.getElementById(selectedId).style.display = 'none';
     document.getElementById(dropTargetId).style.display = 'none';
+    clear.style.display = 'none';
     matchingCounter++;
+    alert("Acertou XD");
+  } else {
+    alert("Falta pouco !");
   }
 
-  if (matchingCounter === 5 ) {
+  if (matchingCounter === 1 ) {
     endMessage.style.display = 'block';
-    restart.style.display = 'block';
   }
 
   this.classList.remove('over');
@@ -71,7 +74,7 @@ function checkForMatch(selected, dropTarget) {
 function playAgain() {
   matchingCounter = 0;
   endMessage.style.display = 'none';
-  restart.style.display = 'none';
+  clear.style.display = 'flex';
   draggableListItems.forEach(item => {
     document.getElementById(item.id).style.display = 'block';
   })
