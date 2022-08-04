@@ -1,6 +1,7 @@
-const draggableListItems = document.querySelectorAll('.draggable-list div');
-const endMessage = document.getElementById('endMessage');
-const clear = document.getElementById('results');
+const draggableListItems  = document.querySelectorAll('.draggable-list div');
+const endMessage          = document.getElementById('endMessage');
+const clear               = document.getElementById('results');
+const popMessage          = document.getElementById('popMessage'); 
 
 // current phrase being dragged
 let selectedId;
@@ -39,11 +40,12 @@ function dragDrop() {
     matchingCounter++;
     alert("Acertou XD");
   } else {
-    alert("Falta pouco !");
+    document.getElementById("answer").innerHTML = "Falta pouco";  
   }
 
   if (matchingCounter === 1 ) {
-    endMessage.style.display = 'block';
+    // endMessage.style.display = 'block';
+    popMessage.style.display = 'block';
   }
 
   this.classList.remove('over');
@@ -52,20 +54,17 @@ function dragDrop() {
 function checkForMatch(selected, dropTarget) {
   switch (selected) {
     case 'e1':
-      return dropTarget === 's1' ? true : false;
+      return dropTarget === 's3' ? true : false;
 
     case 'e2':
       return dropTarget === 's2' ? true : false;
 
     case 'e3':
-      return dropTarget === 's3' ? true : false;
+      return dropTarget === 's1' ? true : false;
 
     case 'e4':
       return dropTarget === 's4' ? true : false;
-
-    case 'e5':
-      return dropTarget === 's5' ? true : false;
-
+s
     default:
       return false;
   }

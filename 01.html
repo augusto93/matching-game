@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado financeiro</title>
+    <style>
+      body {
+        background-color: #ffffff;
+        font-family: sans-serif;
+        color: #001e64;
+        margin: 0;
+        padding: 0;
+      }
+
+      h1, h3, p, tr, td {
+        text-align: center;
+      }
+
+      td, tr {
+        padding: 5px 30px;
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        max-width: 960px;
+        height: 100vh;
+        margin:0 auto;
+      }
+
+      .content-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #ff8c03;
+        width: 800px;
+        height: 250px;
+        border-radius: 120px;
+        text-align: center;
+      }
+
+      #answer {
+        height: 20px;
+        margin: 50px 0 20px 0;
+      }
+
+      .column {
+        flex-direction: column;
+      }
+
+      .draggable-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 85%;
+      }
+
+      #question {
+        margin: 0 0 25px 0;
+      }
+
+      #question div {
+        list-style: none;
+        padding: 10px;
+        margin: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #ffffff;
+        cursor: grab;
+        text-align: center;
+        border-radius: 20px;
+      }
+
+      #results div {
+        list-style: none;
+        padding: 10px;
+        margin: 5px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        color: #ffffff;
+        cursor: grab;
+        text-align: center;
+        border: 1px solid #ffffff;
+        border-radius: 20px;
+      }
+
+      #results {
+        flex-direction: row;
+      }
+
+      #results div:hover {
+        background-color: #146efa;
+      }
+
+      .over {
+        background-color: #001e64;
+      }
+
+      button {
+        margin: 20px 0 0 0;
+        cursor: pointer;
+        display: block;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+        border: none;
+        background-color: #001e64;
+        color: #ffffff;
+      }
+
+      button:hover {
+        color: #001e64;
+        background-color: #ffffff;
+      }
+
+      #endMessage {
+        display: none;
+      }
+
+      #popMessage {
+        display: none;
+      }
+
+      #play {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    
+    <main class="container">
+      <section>
+        <div id="content-title">
+          <h1>Resultado financeiro</h1>
+        </div>
+
+        <div class="content-list column" >
+          <!-- <div id="answer"></div> -->
+          <div id="question" class="draggable-list">
+            <div id="s1" draggable="true">Qual foi o resultado financeiro da SulAmérica no 2º Trimestre de 2022?</div>
+          </div>
+          <div id="results" class="draggable-list">
+            <div id="e4" draggable="true">R$ 98,7 milhões</div>
+            <div id="e1" draggable="true">R$ 127,9 milhões</div>
+            <div id="e2" draggable="true">R$ 156,2 milhões</div>
+            <div id="e3" draggable="true">R$ 194,5 milhões</div>
+          </div>
+
+          <!-- <div id="endMessage">
+            <button onclick="playAgain()">Play again</button>
+          </div> -->
+
+          <div id="popMessage">
+            Pop-up
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const draggableListItems  = document.querySelectorAll('.draggable-list div');
+      const endMessage          = document.getElementById('endMessage');
+      const clear               = document.getElementById('results');
+      const popMessage          = document.getElementById('popMessage'); 
+
+      // current phrase being dragged
+      let selectedId;
+
+      //target phrase
+      let dropTargetId;
+
+      //counter for correct phrases
+      let matchingCounter = 0;
+
+      addEventListener();
+
+      function dragStart() {
+        selectedId = this.id;
+      }
+
+      function dragEnter() {
+        this.classList.add('over');
+      }
+
+      function dragLeave() {
+        this.classList.remove('over');
+      }
+
+      function dragOver(ev) {
+        ev.preventDefault();
+      }
+
+      function dragDrop() {
+        dropTargetId = this.id;
+
+        if (checkForMatch(selectedId, dropTargetId)) {
+          document.getElementById(selectedId).style.display = 'none';
+          document.getElementById(dropTargetId).style.display = 'none';
+          clear.style.display = 'none';
+          matchingCounter++;
+          alert("Acertou XD");
+        } else {
+          // document.getElementById("answer").innerHTML = "Falta pouco";  
+          alert("Falta pouco");
+        }
+
+        if (matchingCounter === 1 ) {
+          // endMessage.style.display = 'block';
+          popMessage.style.display = 'block';
+        }
+
+        this.classList.remove('over');
+      }
+
+      function checkForMatch(selected, dropTarget) {
+        switch (selected) {
+          case 'e1':
+            return dropTarget === 's3' ? true : false;
+
+          case 'e2':
+            return dropTarget === 's2' ? true : false;
+
+          case 'e3':
+            return dropTarget === 's1' ? true : false;
+
+          case 'e4':
+            return dropTarget === 's4' ? true : false;
+      s
+          default:
+            return false;
+        }
+      }
+
+      function playAgain() {
+        matchingCounter = 0;
+        endMessage.style.display = 'none';
+        clear.style.display = 'flex';
+        draggableListItems.forEach(item => {
+          document.getElementById(item.id).style.display = 'block';
+        })
+      }
+
+
+
+      function addEventListener(){
+        draggableListItems.forEach(item => {
+          item.addEventListener('dragstart', dragStart);
+          item.addEventListener('dragenter', dragEnter);
+          item.addEventListener('drop', dragDrop);
+          item.addEventListener('dragover', dragOver);
+          item.addEventListener('dragleave', dragLeave);
+        })
+      }
+
+    </script>
+  </body>
+</html>
